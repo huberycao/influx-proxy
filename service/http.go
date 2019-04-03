@@ -71,6 +71,7 @@ func (hs *HttpService) HandlerQuery(w http.ResponseWriter, req *http.Request) {
 	defer req.Body.Close()
 	w.Header().Add("X-Influxdb-Version", backend.VERSION)
 
+	/* Remove by Hubery, 兼容 Grafana SHOW RETENTION POLICIES
 	db := req.FormValue("db")
 	if hs.db != "" {
 		if db != hs.db {
@@ -78,7 +79,7 @@ func (hs *HttpService) HandlerQuery(w http.ResponseWriter, req *http.Request) {
 			w.Write([]byte("database not exist."))
 			return
 		}
-	}
+	}*/
 
 	q := strings.TrimSpace(req.FormValue("q"))
 	err := hs.ic.Query(w, req)

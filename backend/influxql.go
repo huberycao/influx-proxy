@@ -116,6 +116,11 @@ func ScanToken(data []byte, atEOF bool) (advance int, token []byte, err error) {
 }
 
 func GetMeasurementFromInfluxQL(q string) (m string, err error) {
+	// Add by Hubery, 兼容 Grafana SHOW RETENTION POLICIES on "database" 和 SHOW MEASUREMENTS WITH MEASUREMENT =~ /y/
+	if strings.Contains(strings.ToUpper(q), "SHOW") {
+		return
+	}
+
 	buf := bytes.NewBuffer([]byte(q))
 	scanner := bufio.NewScanner(buf)
 	scanner.Buffer([]byte(q), len(q))
