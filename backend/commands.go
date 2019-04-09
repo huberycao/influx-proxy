@@ -6,6 +6,6 @@ package backend
 
 var (
 	ForbidCmds   = "(?i:select\\s+\\*|^\\s*delete|^\\s*drop|^\\s*grant|^\\s*revoke|\\(\\)\\$)"
-	SupportCmds  = "(?i:where.*time|show.*from|SHOW RETENTION POLICIES.*|SHOW MEASUREMENTS.*)"
+	SupportCmds  = "(?i:where.*time|show.*from|SHOW RETENTION POLICIES.*|SHOW MEASUREMENTS.*|SHOW DATABASES.*)"
 	ExecutorCmds = "(?i:show.*measurements-remove)"
 )

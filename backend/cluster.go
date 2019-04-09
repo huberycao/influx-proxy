@@ -455,6 +455,7 @@ func (ic *InfluxCluster) WriteRow(line []byte) {
 
 	key, err := ScanKey(line)
 	if err != nil {
+		log.Printf("scan key error line: = %s\n", line)
 		log.Printf("scan key error: %s\n", err)
 		atomic.AddInt64(&ic.stats.PointsWrittenFail, 1)
 		return
